@@ -509,24 +509,34 @@ var favoritePlanet = function(planet) {
  *   earnMoney
  *
  */
- var Person = function(name,money,age,gender) {
+ var Person = function(name,money,age,sex) {
 
   this.name = name;
   this.money = money;
   this.age = age;
-  this.gender = gender;
+  this.gender = sex;
 
-  function spendMoney(number) {
+  //console.log(this.name,this.money,this.age,this.gender);
+
+  this.spendMoney = function(number) {
 
     this.money -= number;
 
   };
 
-  function earnMoney(number) {
+  this.earnMoney = function(number) {
 
     this.money += number;
   };
- }
+
+  return {
+
+    name: this.name,
+    money: this.money,
+    age: this.age,
+    gender: this.gender
+  };
+ };
 
 
 /* Step 28
