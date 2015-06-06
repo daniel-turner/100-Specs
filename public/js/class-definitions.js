@@ -792,6 +792,21 @@ PrincessLeia.prototype = Object.create(Person.prototype, {
 *   staplePapers
 *
 */
+function Stapler(color,maxPapers) {
+
+  this.color = color;
+  this.maxPapers = maxPapers;
+
+  Stapler.prototype.staplePapers = function(numberOfPapers) {
+
+    if(maxPapers >= numberOfPapers) {
+
+      return true;
+    }
+
+    return false;
+  }
+}
 
 
 /* Step 35
@@ -832,6 +847,74 @@ PrincessLeia.prototype = Object.create(Person.prototype, {
 *   addDiscovery
 *
 */
+function Scientist(name,money,age,gender) {
+
+  this.disciplines = [];
+  this.discoveries = [];
+
+  Person.call(this,name,money,age,gender);
+
+  Scientist.prototype.addDiscipline = function(discipline) {
+
+    if(typeof discipline === 'string') {
+
+      this.disciplines.push(discipline);
+    };
+  };
+
+  Scientist.prototype.checkDiscipline = function(discipline) {
+
+    if(this.disciplines.indexOf(discipline) > -1) {
+
+      return true;
+    };
+
+    return false;
+  };
+
+  Scientist.prototype.addDiscovery = function(discovery) {
+
+    if(typeof discovery === 'string') {
+
+      this.discoveries.push(discovery);
+
+      var out = "I discovered ";
+
+      for(var i = 0;i<this.discoveries.length; i++) {
+
+        out = out.concat(this.discoveries[i]);
+
+        if((i+1) < this.discoveries.length) {
+
+          out = out.concat(", ");
+          //break;
+        } else if((i+1) === this.discoveries.length) {
+
+          out = out.concat(", and " + this.discoveries[i] + ".");
+          i++;
+
+        }
+
+        //out = out.concat(" and ");
+      }
+
+      out = out.concat(".");
+      return out;
+    };
+  };
+
+
+
+
+
+};
+
+Scientist.prototype = Object.create(Person.prototype, {
+
+  constructor: {
+    value: Person
+  }
+});
 
 
 /* Step 36
